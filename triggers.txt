@@ -1,0 +1,35 @@
+//Actualiza///////////////////////////////////////////////////////////////////							Se necesitan los datos antiguos y los nuevos
+create trigger actualiza_auditoria_productos
+after update on productos
+for each row
+insert into auditoria_productos(
+nomAnt, cantAnt, marAnt, preAnt,
+nomNew, cantNew, marNew, preNew,
+usuario, modificado, proceso, idproductos)
+values(
+OLD.nombre, OLD.cantidad, OLD.marca, OLD.precio,
+NEW.nombre, NEW.cantidad, NEW.marca, NEW.precio,
+USER(), NOW(), 'Dato Actualizado', NEW.idproductos);
+
+//Insertar////////////////////////////////////////////////////////////////////								Se necesitan los datos nuevos
+create trigger agregar_auditoria_productos
+after insert on productos
+for each row
+insert into auditoria_productos(
+nomNew, cantNew, marNew, preNew,
+usuario, modificado, proceso, idproductos)
+values(
+NEW.nombre, NEW.cantidad, NEW.marca, NEW.precio,
+USER(), NOW(), 'Dato Insertado', NEW.idproductos);
+
+//Eliminar/////////////////////////////////////////////////////////////////////////								Se necesitan los datos antiguos
+create trigger eliminar_auditoria_productos
+after delete on productos
+for each row
+insert into auditoria_productos(
+nomAnt, cantAnt, marAnt, preAnt,
+usuario, modificado, proceso, idproductos)
+values(
+OLD.nombre, OLD.cantidad, OLD.marca, OLD.precio,
+USER(), NOW(), 'Dato Eliminado', OLD.idproductos);
+////////////////////////////////////////////////////////////////////////////////////////////////////////
