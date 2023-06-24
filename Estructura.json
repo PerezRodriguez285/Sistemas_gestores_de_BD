@@ -1,0 +1,57 @@
+{
+	Empleado:{
+		"DNI": Int
+		"Nombre": Varchar [
+		{
+			"NumeroDpto": 1
+			"NombreDpto": "San Juan"
+		}
+		]
+		"Apellido1": Varchar
+		"Apellido2": Varchar	
+		"FechaNac": date
+		"Direccion": Varchar
+		"Sexo": Varchar
+		"Sueldo": Float
+		"SuperDn1":[
+		{
+			"DNI":Int
+			"DnDirector":Int
+		}
+		]
+		"DNO": Int
+	}
+		Departamento:{
+			"NumeroDpto":{
+				LocalizacionesDpto:{
+					"DNI":1
+					"UbicacionDpto":"Mexico"
+				}
+			}
+			"NombreDpto":{
+				"Nombre":"Alberto"
+			}
+			"DnDirector": Int
+			"FechaIngresoDirec": date
+		}
+			TrabajaEn:{
+				"DniEmpleado": Int
+				"NumProyecto": Int
+				"Horas": date
+			}
+			Proyecto:{
+				"NumProyecto": Int
+				"NombreProyecto": Varchar
+				"UbicacionProyecto": Varchar
+				"NumDptoProyecto": Int
+			}
+			Subordinado:{
+				"DniEmpleado": Int {
+					"DNI": Int
+				}
+				"NomSubordinado":Varchar
+				"Sexo": Varchar
+				"FechaNac": date
+				"Relacion":Varchar
+			}
+}
